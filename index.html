@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,13 +22,101 @@
 <!-- Theme CSS -->
 <link id="theme-style" rel="stylesheet" href="assets/css/orbit-3.css">
 
-<!-- Custom skill tag style -->
+<!-- Custom style -->
 <style>
-.skills-section .skill-group { margin-bottom: 25px; }
+/* 자기소개 한 줄 */
+.sidebar-wrapper .one-line-intro {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  margin-top: 8px;
+  margin-bottom: 0;
+  letter-spacing: -0.2px;
+}
+
+/* 스킬 태그 (작게) */
+.skills-section .skill-group { margin-bottom: 14px; }
 .skills-section .skill-group:last-child { margin-bottom: 0; }
-.skills-section .skill-group-title { font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-.skills-section .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.skills-section .skill-tag { display: inline-block; padding: 8px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; color: #333; background: #fff; }
+.skills-section .skill-group-title { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.skills-section .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skills-section .skill-tag { display: inline-block; padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; color: #333; background: #fff; }
+
+/* 프로젝트 카드 */
+.projects-section .project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.projects-section .project-card {
+  display: block;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.projects-section .project-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.projects-section .project-thumb {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: linear-gradient(135deg, #2c5364, #203a43);
+}
+.projects-section .project-body { padding: 16px; }
+.projects-section .project-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3d884d;
+  background: #eaf5ec;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.projects-section .project-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3F4650;
+  margin: 0 0 8px;
+}
+.projects-section .project-card-desc {
+  font-size: 13px;
+  color: #7c8695;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.projects-section .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.projects-section .project-tag {
+  font-size: 11px;
+  color: #545E6C;
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.projects-section .project-card-empty {
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  color: #aaa;
+  font-size: 13px;
+}
+.projects-section .project-empty-inner { text-align: center; }
+.projects-section .project-empty-plus { display: block; font-size: 28px; margin-bottom: 8px; }
+
+@media (max-width: 767.98px) {
+  .projects-section .project-grid { grid-template-columns: 1fr; }
+  .sidebar-wrapper .one-line-intro { white-space: normal; }
+}
 </style>
 </head>
 
@@ -37,10 +124,9 @@
 <div class="wrapper mt-lg-5">
 <div class="sidebar-wrapper">
 <div class="profile-container">
-<img class="profile" src="assets/images/배수빈.jpeg" alt="배수빈" />
+<img class="profile" src="assets/images/배수빈.png" alt="배수빈" />
 <h1 class="name">배수빈</h1>
-<h3 class="tagline">헬스케어 데이터 분석가 · 의료기획 PM 지망</h3>
-<p class="one-line-intro">간호학 전공과 데이터 분석 역량을 갖춘 헬스케어 분야의 인재, 배수빈입니다.</p>
+<p class="one-line-intro">의료와 데이터를 잇는 인재</p>
 </div><!--//profile-container-->
 
 <div class="contact-container container-block">
@@ -136,11 +222,33 @@
 <section class="section projects-section">
 <h2 class="section-title"><span class="icon-holder"><i class="fa-solid fa-archive"></i></span>프로젝트</h2>
 
-<div class="item">
-<span class="project-title"><a href="https://app.notion.com/p/6c1a315780ce83d58dba0132016fad2d?source=copy_link" target="_blank">흡연 여부 데이터 분석을 통한 건강 인사이트 도출</a></span> - <span class="project-tagline">흡연 여부와 건강 지표 간의 관계를 데이터로 분석한 프로젝트입니다.</span>
-</div><!--//item-->
+<div class="project-grid">
 
-<!-- 새 프로젝트를 추가할 땐 위 item 블록을 통째로 복사해서 아래에 붙여넣고 링크·제목·설명만 바꾸면 돼요 -->
+<a class="project-card" href="https://app.notion.com/p/6c1a315780ce83d58dba0132016fad2d?source=copy_link" target="_blank">
+<div class="project-thumb">🫁</div>
+<div class="project-body">
+<span class="project-badge">데이터 분석 프로젝트</span>
+<h3 class="project-card-title">흡연 여부 데이터 분석을 통한 건강 인사이트 도출</h3>
+<p class="project-card-desc">흡연 여부와 건강 지표 간의 관계를 데이터로 분석한 프로젝트입니다.</p>
+<div class="project-tags">
+<span class="project-tag">Python</span>
+<span class="project-tag">pandas</span>
+<span class="project-tag">데이터 분석</span>
+<span class="project-tag">데이터 시각화</span>
+</div>
+</div>
+</a>
+
+<div class="project-card project-card-empty">
+<div class="project-empty-inner">
+<span class="project-empty-plus">+</span>
+<span>앞으로 추가될 프로젝트</span>
+</div>
+</div>
+
+<!-- 새 프로젝트를 추가할 땐 위 <a class="project-card">...</a> 블록을 통째로 복사해서, 이 빈 카드 위에 붙여넣고 링크·이모지·제목·설명·태그만 바꾸면 돼요 -->
+
+</div><!--//project-grid-->
 
 </section><!--//section-->
 
@@ -194,6 +302,11 @@
 </div><!--//main-wrapper-->
 </div>
 
+<footer class="footer">
+<div class="text-center">
+<small class="copyright">Designed with <i class="fa-solid fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+</div><!--//container-->
+</footer><!--//footer-->
+
 </body>
 </html>
-```
