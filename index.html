@@ -2,149 +2,263 @@
 <html lang="ko">
 <head>
 <title>배수빈 - Data & AI Portfolio</title>
+
 <!-- Meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="배수빈 포트폴리오 - 간호학 전공 기반 데이터 분석가">
+<meta
+    name="description"
+    content="배수빈 포트폴리오 - 간호학 전공 기반 데이터 분석가"
+>
 <meta name="author" content="배수빈">
+
 <link rel="shortcut icon" href="favicon.ico">
 
 <!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
+    rel="stylesheet"
+    type="text/css"
+>
 
-<!-- FontAwesome JS-->
+<!-- FontAwesome JS -->
 <script defer src="assets/fontawesome/js/all.min.js"></script>
 
 <!-- Global CSS -->
-<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link
+    rel="stylesheet"
+    href="assets/plugins/bootstrap/css/bootstrap.min.css"
+>
 
 <!-- Theme CSS -->
-<link id="theme-style" rel="stylesheet" href="assets/css/orbit-3.css">
+<link
+    id="theme-style"
+    rel="stylesheet"
+    href="assets/css/orbit-3.css"
+>
 
 <!-- Custom style -->
 <style>
 /* 자기소개 한 줄 */
 .sidebar-wrapper .one-line-intro {
-  font-size: 13px;
-  color: rgba(255,255,255,0.85);
-  white-space: nowrap;
-  margin-top: 8px;
-  margin-bottom: 0;
-  letter-spacing: -0.2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 13px;
+    letter-spacing: -0.2px;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
 }
 
-/* 스킬 태그 (작게) */
-.skills-section .skill-group { margin-bottom: 14px; }
-.skills-section .skill-group:last-child { margin-bottom: 0; }
-.skills-section .skill-group-title { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-.skills-section .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.skills-section .skill-tag { display: inline-block; padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; color: #333; background: #fff; }
+/* 스킬 태그 */
+.skills-section .skill-group {
+    margin-bottom: 14px;
+}
+
+.skills-section .skill-group:last-child {
+    margin-bottom: 0;
+}
+
+.skills-section .skill-group-title {
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.skills-section .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skills-section .skill-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
 
 /* 프로젝트 카드 */
 .projects-section .project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
+
 .projects-section .project-card {
-  display: block;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  background: #fff;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+    display: block;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
-.projects-section .project-card:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-  text-decoration: none;
+
+.projects-section .project-card:hover,
+.projects-section .project-card:focus {
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
+
 .projects-section .project-thumb {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  background: linear-gradient(135deg, #2c5364, #203a43);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    font-size: 48px;
+    background: linear-gradient(135deg, #2c5364, #203a43);
 }
-.projects-section .project-body { padding: 16px; }
+
+.projects-section .project-body {
+    padding: 16px;
+}
+
 .projects-section .project-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  color: #3d884d;
-  background: #eaf5ec;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #3d884d;
+    background: #eaf5ec;
+    border-radius: 20px;
 }
+
 .projects-section .project-card-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #3F4650;
-  margin: 0 0 8px;
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3f4650;
 }
+
 .projects-section .project-card-desc {
-  font-size: 13px;
-  color: #7c8695;
-  line-height: 1.5;
-  margin: 0 0 12px;
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #7c8695;
 }
-.projects-section .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.projects-section .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
 .projects-section .project-tag {
-  font-size: 11px;
-  color: #545E6C;
-  background: #f5f5f5;
-  padding: 4px 8px;
-  border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 11px;
+    color: #545e6c;
+    background: #f5f5f5;
+    border-radius: 6px;
 }
+
 .projects-section .project-card-empty {
-  border: 1px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 260px;
-  color: #aaa;
-  font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    font-size: 13px;
+    color: #aaa;
+    border: 1px dashed #ccc;
 }
-.projects-section .project-empty-inner { text-align: center; }
-.projects-section .project-empty-plus { display: block; font-size: 28px; margin-bottom: 8px; }
+
+.projects-section .project-empty-inner {
+    text-align: center;
+}
+
+.projects-section .project-empty-plus {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 28px;
+}
 
 @media (max-width: 767.98px) {
-  .projects-section .project-grid { grid-template-columns: 1fr; }
-  .sidebar-wrapper .one-line-intro { white-space: normal; }
+    .projects-section .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-wrapper .one-line-intro {
+        white-space: normal;
+    }
 }
 </style>
 </head>
 
 <body>
 <div class="wrapper mt-lg-5">
+
 <div class="sidebar-wrapper">
+
 <div class="profile-container">
-<img class="profile" src="assets/images/배수빈.jpeg" alt="배수빈" />
+<img
+    class="profile"
+    src="assets/images/배수빈.jpeg"
+    alt="배수빈 프로필 사진"
+>
 <h1 class="name">배수빈</h1>
 <p class="one-line-intro">의료와 데이터를 잇는 인재</p>
 </div><!--//profile-container-->
 
 <div class="contact-container container-block">
 <ul class="list-unstyled contact-list">
-<li class="email"><i class="fa-solid fa-envelope"></i><a href="mailto:bsb112222@gmail.com">bsb112222@gmail.com</a></li>
-<li class="phone"><i class="fa-solid fa-phone"></i><a href="tel:010-3142-0955">010-3142-0955</a></li>
-<li class="website"><i class="fa-solid fa-pen-nib"></i><a href="https://think031122.tistory.com/" target="_blank">think031122.tistory.com</a></li>
-<li class="github"><i class="fa-brands fa-github"></i><a href="https://github.com/subin-1122" target="_blank">github.com/subin-1122</a></li>
+<li class="email">
+<i class="fa-solid fa-envelope"></i>
+<a href="mailto:bsb112222@gmail.com">
+bsb112222@gmail.com
+</a>
+</li>
+
+<li class="phone">
+<i class="fa-solid fa-phone"></i>
+<a href="tel:010-3142-0955">
+010-3142-0955
+</a>
+</li>
+
+<li class="website">
+<i class="fa-solid fa-pen-nib"></i>
+<a
+    href="https://think031122.tistory.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+think031122.tistory.com
+</a>
+</li>
+
+<li class="github">
+<i class="fa-brands fa-github"></i>
+<a
+    href="https://github.com/subin-1122"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+github.com/subin-1122
+</a>
+</li>
 </ul>
 </div><!--//contact-container-->
 
 <div class="education-container container-block">
 <h2 class="container-block-title">학력</h2>
+
 <div class="item">
 <h4 class="degree">간호학과</h4>
 <h5 class="meta">원광대학교 (보건)</h5>
 <div class="time">2022.03 - 2026.02</div>
 </div><!--//item-->
+
 <div class="item">
 <h4 class="degree">이과</h4>
 <h5 class="meta">이리여자고등학교</h5>
@@ -154,16 +268,19 @@
 
 <div class="education-container container-block">
 <h2 class="container-block-title">자격증</h2>
+
 <div class="item">
 <h4 class="degree">간호사 면허증</h4>
 <h5 class="meta">보건복지부</h5>
 <div class="time">2026.03.05</div>
 </div><!--//item-->
+
 <div class="item">
 <h4 class="degree">BLS</h4>
 <h5 class="meta">AHA (미국심장협회)</h5>
 <div class="time">2024.10.21 - 2026.10.21</div>
 </div><!--//item-->
+
 <div class="item">
 <h4 class="degree">KALS</h4>
 <h5 class="meta">대한심폐소생협회</h5>
@@ -176,31 +293,44 @@
 <div class="main-wrapper">
 
 <section class="section experiences-section">
-<h2 class="section-title"><span class="icon-holder"><i class="fa-solid fa-briefcase"></i></span>경력 및 활동</h2>
+<h2 class="section-title">
+<span class="icon-holder">
+<i class="fa-solid fa-briefcase"></i>
+</span>
+경력 및 활동
+</h2>
 
 <div class="item">
 <div class="meta">
 <div class="upper-row">
-<h3 class="job-title">AI 헬스케어</h3>
-<div class="time">2026.05 - 2026.11</div>
+<h3 class="job-title">AI 헬스케어 부트캠프</h3>
+<div class="time">2026.05 - 2026.11 (수료 예정)</div>
 </div><!--//upper-row-->
-<div class="company">넥스트러너스</div>
+
+<div class="company">넥스트러너스 (OZ 코딩스쿨) </div>
 </div><!--//meta-->
+
 <div class="details">
-<p>헬스케어 데이터 기반 인공지능 관련 프로그램에 참여했습니다.</p>
+<p>
+헬스케어 데이터 기반 인공지능 관련 프로그램 (데이터분석, 웹 개발)
+</p>
 </div><!--//details-->
 </div><!--//item-->
 
 <div class="item">
 <div class="meta">
 <div class="upper-row">
-<h3 class="job-title">취업연계</h3>
+<h3 class="job-title">원광대학교병원 취업 연계 실습</h3>
 <div class="time">2025.07 - 2025.08</div>
 </div><!--//upper-row-->
-<div class="company">원광대학교병원</div>
+
+<div class="company">학생 대표 실습</div>
 </div><!--//meta-->
+
 <div class="details">
-<p>간호학 취업연계 프로그램에 참여했습니다.</p>
+<p>
+간호학 취업연계를 통해 임상 현장에서의 실무 경험을 쌓았습니다. 
+</p>
 </div><!--//details-->
 </div><!--//item-->
 
@@ -210,41 +340,88 @@
 <h3 class="job-title">임상 실습</h3>
 <div class="time">2024.04 - 2025.07</div>
 </div><!--//upper-row-->
+
 <div class="company">대학병원 외 6곳</div>
 </div><!--//meta-->
+
 <div class="details">
-<p>간호학 실습 1000시간을 수행하며 임상 현장에서의 실무 경험을 쌓았습니다.</p>
+<p>
+간호학 실습 1,000시간을 통해 임상 현장에서의 실무 경험을 쌓았습니다.
+</p>
 </div><!--//details-->
 </div><!--//item-->
 
-</section><!--//section-->
+</section><!--//experiences-section-->
 
 <section class="section projects-section">
-<h2 class="section-title"><span class="icon-holder"><i class="fa-solid fa-archive"></i></span>프로젝트</h2>
+<h2 class="section-title">
+<span class="icon-holder">
+<i class="fa-solid fa-archive"></i>
+</span>
+프로젝트
+</h2>
 
 <div class="project-grid">
 
-<a class="project-card" href="https://app.notion.com/p/6c1a315780ce83d58dba0132016fad2d?source=copy_link" target="_blank">
-<div class="project-thumb">🫁</div>
+<!-- 흡연 여부 데이터 분석 프로젝트 -->
+<a
+    class="project-card"
+    href="smoking-project.html"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+<div class="project-thumb" aria-hidden="true">🫁</div>
+
 <div class="project-body">
-<span class="project-badge">데이터 분석 프로젝트</span>
-<h3 class="project-card-title">흡연 여부 데이터 분석을 통한 건강 인사이트 도출</h3>
-<p class="project-card-desc">흡연 여부와 건강 지표 간의 관계를 데이터로 분석한 프로젝트입니다.</p>
+<span class="project-badge">
+헬스케어 데이터 분석 · 팀 프로젝트
+</span>
+
+<h3 class="project-card-title">
+흡연 여부 데이터 분석을 통한 건강 인사이트 도출
+</h3>
+
+<p class="project-card-desc">
+건강검진 데이터에서 BMI와 체격에 의한 교란 효과를
+단계적으로 통제 후 파생변수 중심으로 흡연과 대사
+불균형의 연관성을 분석했습니다. 
+</p>
+
 <div class="project-tags">
 <span class="project-tag">Python</span>
 <span class="project-tag">pandas</span>
-<span class="project-tag">데이터 분석</span>
-<span class="project-tag">데이터 시각화</span>
+<span class="project-tag">NumPy</span>
+<span class="project-tag">Seaborn</span>
+<span class="project-tag">scikit-learn</span>
+<span class="project-tag">통계 분석</span>
+<span class="project-tag">EDA</span>
 </div>
 </div>
 </a>
 
-<a class="project-card" href="project_infertility_ai.html" target="_blank">
-<div class="project-thumb">🧬</div>
+<!-- 난임 환자 임신 성공 예측 프로젝트 -->
+<a
+    class="project-card"
+    href="project_infertility_ai.html"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+<div class="project-thumb" aria-hidden="true">🧬</div>
+
 <div class="project-body">
-<span class="project-badge">DACON 경진대회 · 3인 팀</span>
-<h3 class="project-card-title">난임 환자 임신 성공 예측 AI</h3>
-<p class="project-card-desc">결측치를 무작정 채우지 않고 "왜 비어있는지"를 구조적으로 분석해 처리했고, 완전 조합표 방식의 과적합을 확인한 뒤 결정 트리 기반 접근으로 전략을 전환했습니다. 최종적으로 LightGBM·XGBoost·CatBoost 3-모델 앙상블로 ROC-AUC 74.01%를 달성했습니다.</p>
+<span class="project-badge">
+DACON 경진대회 · 3인 팀
+</span>
+
+<h3 class="project-card-title">
+난임 환자 임신 성공 예측 AI
+</h3>
+
+<p class="project-card-desc">
+난임 시술 데이터의 결측 구조와 주요 변수를 분석하고, 
+머신러닝 앙상블 모델을 활용해 임신 성공 여부를 예측했습니다. 
+</p>
+
 <div class="project-tags">
 <span class="project-tag">Python</span>
 <span class="project-tag">pandas</span>
@@ -264,17 +441,25 @@
 </div>
 </div>
 
-<!-- 새 프로젝트를 추가할 땐 위 <a class="project-card">...</a> 블록을 통째로 복사해서, 이 빈 카드 위에 붙여넣고 링크·이모지·제목·설명·태그만 바꾸면 돼요 -->
+<!--
+새 프로젝트를 추가할 때는 위 project-card 블록을 복사한 뒤
+링크, 이모지, 제목, 설명, 태그를 변경하면 됩니다.
+-->
 
 </div><!--//project-grid-->
-
-</section><!--//section-->
+</section><!--//projects-section-->
 
 <section class="skills-section section">
-<h2 class="section-title"><span class="icon-holder"><i class="fa-solid fa-rocket"></i></span>보유 스킬</h2>
+<h2 class="section-title">
+<span class="icon-holder">
+<i class="fa-solid fa-rocket"></i>
+</span>
+보유 스킬
+</h2>
 
 <div class="skill-group">
 <h4 class="skill-group-title">Languages</h4>
+
 <div class="skill-tags">
 <span class="skill-tag">Python</span>
 <span class="skill-tag">JavaScript</span>
@@ -284,6 +469,7 @@
 
 <div class="skill-group">
 <h4 class="skill-group-title">AI/ML</h4>
+
 <div class="skill-tags">
 <span class="skill-tag">pandas</span>
 <span class="skill-tag">numpy</span>
@@ -298,6 +484,7 @@
 
 <div class="skill-group">
 <h4 class="skill-group-title">Backend</h4>
+
 <div class="skill-tags">
 <span class="skill-tag">MySQL</span>
 <span class="skill-tag">MongoDB</span>
@@ -306,6 +493,7 @@
 
 <div class="skill-group">
 <h4 class="skill-group-title">Tool</h4>
+
 <div class="skill-tags">
 <span class="skill-tag">Git &amp; GitHub</span>
 <span class="skill-tag">Visual Studio Code</span>
@@ -318,13 +506,7 @@
 </section><!--//skills-section-->
 
 </div><!--//main-wrapper-->
-</div>
-
-<footer class="footer">
-<div class="text-center">
-<small class="copyright">Designed with <i class="fa-solid fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-</div><!--//container-->
-</footer><!--//footer-->
+</div><!--//wrapper-->
 
 </body>
 </html>

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>흡연 여부 데이터 분석 — 배수빈</title>
+
+    <meta
+        name="description"
+        content="건강검진 데이터를 활용한 흡연 여부 데이터 분석 프로젝트 — 배수빈"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                "Roboto",
+                "Apple SD Gothic Neo",
+                "Noto Sans KR",
+                sans-serif;
+            color: #3f4650;
+            background: #f5f5f5;
+            line-height: 1.65;
+        }
+
+        a {
+            color: #3d884d;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .topnav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .topnav .wrap {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            overflow-x: auto;
+        }
+
+        .topnav a {
+            flex-shrink: 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #7c8695;
+            text-decoration: none;
+        }
+
+        .topnav a:hover,
+        .topnav a:focus {
+            color: #3d884d;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 70px 0 50px;
+            color: #ffffff;
+            background: #273142;
+        }
+
+        .eyebrow {
+            margin-bottom: 14px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #7ec68e;
+        }
+
+        .hero h1 {
+            margin: 0 0 14px;
+            font-size: 34px;
+            font-weight: 900;
+            line-height: 1.3;
+        }
+
+        .hero .lead {
+            max-width: 650px;
+            margin: 0 0 20px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .hero .role {
+            margin: 0 0 22px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hero .role b {
+            color: #ffffff;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-pill {
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        /* Statistics */
+        .stat-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: -34px 0 50px;
+        }
+
+        .stat-card {
+            padding: 20px 16px;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card .num {
+            margin-bottom: 4px;
+            font-size: 20px;
+            font-weight: 900;
+            color: #3d884d;
+        }
+
+        .stat-card .label {
+            font-size: 11px;
+            color: #8a95a6;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        section:last-of-type {
+            border-bottom: 0;
+        }
+
+        .sec-num {
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #b7c0cc;
+        }
+
+        .sec-label {
+            margin-bottom: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #3d884d;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #222b39;
+        }
+
+        .sec-desc {
+            max-width: 680px;
+            margin: 0 0 28px;
+            font-size: 14px;
+            color: #69758a;
+        }
+
+        .card {
+            margin-bottom: 16px;
+            padding: 22px 24px;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            color: #273142;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 13.5px;
+            color: #606c7f;
+        }
+
+        .highlight-box {
+            margin: 20px 0;
+            padding: 16px 20px;
+            font-size: 13.5px;
+            color: #2c5f37;
+            background: #eaf5ec;
+            border-left: 4px solid #3d884d;
+            border-radius: 6px;
+        }
+
+        /* Tables */
+        .table-wrap {
+            margin-bottom: 20px;
+            overflow-x: auto;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        th {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            color: #8a95a6;
+            background: #fafbfc;
+        }
+
+        td {
+            color: #4a5568;
+        }
+
+        td.result-ok {
+            font-weight: 700;
+            color: #3d884d;
+        }
+
+        /* Analysis timeline */
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .timeline .step {
+            position: relative;
+            flex: 1;
+            min-width: 180px;
+            padding: 16px;
+            font-size: 13px;
+            color: #3f4650;
+            background: #f8faf8;
+            border: 1px solid #e2ede2;
+            border-radius: 8px;
+        }
+
+        .timeline .step .n {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 900;
+            color: #3d884d;
+        }
+
+        /* Lists */
+        .learn-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .learn-list li {
+            position: relative;
+            padding: 12px 0 12px 30px;
+            font-size: 14px;
+            color: #4a5568;
+            border-bottom: 1px solid #eef1f4;
+        }
+
+        .learn-list li:last-child {
+            border-bottom: 0;
+        }
+
+        .learn-list li::before {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            font-weight: 900;
+            color: #3d884d;
+            content: "✓";
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+
+        footer .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3d884d;
+            text-decoration: none;
+        }
+
+        footer .stack-line {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #a0a8b4;
+        }
+
+        footer .source-link {
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #8a95a6;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+                padding-top: 55px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline {
+                flex-direction: column;
+            }
+
+            .timeline .step {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .wrap {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+
+            .stat-grid {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 17px 10px;
+            }
+
+            .stat-card .num {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topnav" aria-label="프로젝트 목차">
+        <div class="wrap">
+            <a href="#overview">개요</a>
+            <a href="#data">데이터 및 전처리</a>
+            <a href="#analysis">분석 과정</a>
+            <a href="#results">가설 검증</a>
+            <a href="#insights">핵심 인사이트</a>
+            <a href="#limitations">한계 및 개선</a>
+            <a href="#learnings">배운 점</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow">
+                HEALTHCARE DATA · TEAM PROJECT
+            </div>
+
+            <h1>
+                흡연 여부 데이터 분석을 통한<br>
+                건강 인사이트 도출
+            </h1>
+
+            <p class="lead">
+                건강검진 데이터를 바탕으로 흡연자와 비흡연자의
+                건강 지표 차이를 분석했습니다. BMI와 체격의 영향을
+                단계적으로 통제하며 흡연과 관련성이 높은 핵심 대사
+                지표를 탐색했습니다.
+            </p>
+
+            <p class="role">
+                담당: <b>팀장</b> ·
+                프로젝트 기간:
+                <b>2026.06.10 - 2026.06.12</b>
+            </p>
+
+            <div class="tag-row">
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">pandas</span>
+                <span class="tag-pill">NumPy</span>
+                <span class="tag-pill">Matplotlib</span>
+                <span class="tag-pill">Seaborn</span>
+                <span class="tag-pill">scikit-learn</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="num">3개</div>
+
+                <div class="label">
+                    분석 가설<br>
+                    전체 채택
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="num">p&lt;0.05</div>
+
+                <div class="label">
+                    주요 BMI 구간<br>
+                    통계적 유의성
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="num">4개 지표</div>
+
+                <div class="label">
+                    높은 변화율을 보인<br>
+                    핵심 대사 지표
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="num">0.6%</div>
+
+                <div class="label">
+                    BMI 3단계 구간의<br>
+                    제한적인 표본 비율
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="overview">
+            <div class="wrap">
+                <div class="sec-num">01</div>
+                <div class="sec-label">Overview</div>
+
+                <h2>프로젝트 개요</h2>
+
+                <p class="sec-desc">
+                    흡연자와 비흡연자 사이에서 통계적으로 가장
+                    유의미한 차이를 보이는 핵심 대사 지표가 무엇인지
+                    확인하기 위해 진행한 건강검진 데이터 분석
+                    프로젝트입니다.
+                </p>
+
+                <div class="card">
+                    <h3>프로젝트 배경</h3>
+
+                    <p>
+                        흡연은 다양한 만성질환과 대사증후군의 주요
+                        위험요인으로 알려져 있습니다. 이번 프로젝트에서는
+                        흡연의 영향이 실제 건강검진 데이터에서 어떤
+                        생체 지표의 차이로 나타나는지 확인하고자 했습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>문제 정의</h3>
+
+                    <p>
+                        단순히 흡연자와 비흡연자의 평균만 비교하지 않고,
+                        BMI와 체격처럼 분석 결과를 왜곡할 수 있는 교란
+                        요인을 단계적으로 통제했습니다. 그 후에도 차이가
+                        유지되는 지표를 흡연과 관련성이 높은 핵심 지표로
+                        선정했습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    프로젝트의 핵심 질문은
+                    “흡연자와 비흡연자 간에 가장 뚜렷한 차이를 보이는
+                    대사 지표는 무엇인가?”였습니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="data">
+            <div class="wrap">
+                <div class="sec-num">02</div>
+                <div class="sec-label">Data &amp; Preprocessing</div>
+
+                <h2>데이터 구성 및 전처리</h2>
+
+                <p class="sec-desc">
+                    기본 신체 정보와 임상검사 지표를 활용하고,
+                    중성지방과 혈당을 결합한 복합 대사 지표를 추가로
+                    생성했습니다.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>분류</th>
+                                <th>주요 변수</th>
+                                <th>분석 목적</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>목표 변수</td>
+                                <td>label</td>
+                                <td>
+                                    흡연 여부<br>
+                                    0: 비흡연자 / 1: 흡연자
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>신체 지표</td>
+                                <td>
+                                    나이, 키, 몸무게, BMI
+                                </td>
+                                <td>
+                                    연령과 체격 및 비만도 확인
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>임상 지표</td>
+                                <td>
+                                    공복 혈당, 혈압, 헤모글로빈,
+                                    크레아티닌, 간 효소, 요 단백
+                                </td>
+                                <td>
+                                    혈관·혈당·간·신장 기능 확인
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>지질 지표</td>
+                                <td>
+                                    중성지방, 총콜레스테롤,
+                                    HDL, LDL
+                                </td>
+                                <td>
+                                    지질 대사와 이상지질혈증 확인
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>파생 변수</td>
+                                <td>
+                                    TG/HDL Ratio, TyG Index,
+                                    AIP, Remnant-C
+                                </td>
+                                <td>
+                                    인슐린 저항성 및 동맥경화성
+                                    위험도 분석
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>결측치 처리 기준</h3>
+
+                    <p>
+                        혈압은 극단치의 영향을 줄이기 위해 중앙값으로,
+                        시력은 정형화된 점수 특성을 고려해 최빈값으로
+                        대체했습니다. 공복 혈당은 전체 평균,
+                        중성지방은 연령에 따른 대사 차이를 반영하기 위해
+                        나이대별 평균으로 대체했습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>파생 변수 생성</h3>
+
+                    <p>
+                        BMI와 나이를 분석 가능한 범주로 구분하고,
+                        중성지방·HDL·공복 혈당을 조합한 TG/HDL Ratio,
+                        TyG Index, AIP를 생성했습니다. 이를 통해 단일
+                        검사값만으로 파악하기 어려운 복합 대사 위험을
+                        함께 분석했습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis">
+            <div class="wrap">
+                <div class="sec-num">03</div>
+                <div class="sec-label">Analysis Process</div>
+
+                <h2>분석 과정</h2>
+
+                <p class="sec-desc">
+                    단순 집단 비교에서 시작해 BMI 구간 분석,
+                    체격 교란 통제, 복합 대사 지표 분석 순서로
+                    분석을 심화했습니다.
+                </p>
+
+                <div class="timeline">
+                    <div class="step">
+                        <span class="n">STEP 1</span>
+
+                        흡연자와 비흡연자의 건강 지표 분포 및
+                        평균 차이 확인
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 2</span>
+
+                        BMI 구간별 분석을 통해 비만도의 영향 분리
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 3</span>
+
+                        키와 몸무게 범위를 제한해 체격 교란 통제
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 4</span>
+
+                        복합 대사 지표를 생성해 대사 위험 분석
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        BMI 구간별 분석 — 비만도의 영향 분리
+                    </h3>
+
+                    <p>
+                        정상 BMI 구간에서 비흡연자의 평균 중성지방은
+                        95.87, 흡연자는 124.20이었습니다. 비만 전 단계
+                        구간에서는 비흡연자 115.58, 흡연자 150.76으로
+                        나타났습니다. 대부분의 BMI 구간에서 흡연자
+                        집단의 중성지방이 통계적으로 유의하게
+                        높았습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        성별 변수의 부재 — 체격 교란 통제
+                    </h3>
+
+                    <p>
+                        데이터에 성별 변수가 없었기 때문에 키
+                        165~175cm 및 몸무게 45~75kg 구간을 각각
+                        필터링해 비교했습니다. 키를 기준으로 체격을
+                        보정하자 흡연·비흡연 집단의 신체 조건 차이가
+                        감소했고, 초기 유망 지표였던 헤모글로빈의
+                        영향력도 크게 줄었습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        체격 보정 후에도 유지된 중성지방 차이
+                    </h3>
+
+                    <p>
+                        체격 차이를 줄인 이후에도 중성지방은 흡연자
+                        집단에서 높은 값의 분포가 유지되었습니다.
+                        이에 따라 분석의 초점을 중성지방과 이를
+                        기반으로 한 복합 대사 지표로 좁혔습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="results">
+            <div class="wrap">
+                <div class="sec-num">04</div>
+                <div class="sec-label">Hypothesis Test</div>
+
+                <h2>가설 검증 결과</h2>
+
+                <p class="sec-desc">
+                    분석 전에 설정한 세 가지 가설을 데이터 전처리,
+                    구간별 비교 및 통계 검정을 통해 검증했습니다.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>가설</th>
+                                <th>결과</th>
+                                <th>핵심 해석</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    같은 BMI 구간에서도 흡연자의
+                                    중성지방이 더 높다
+                                </td>
+
+                                <td class="result-ok">
+                                    채택
+                                </td>
+
+                                <td>
+                                    대부분의 BMI 구간에서 흡연군의
+                                    중성지방이 유의하게 높게 나타남
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    헤모글로빈과 BMI의 초기 차이는
+                                    체격에 의한 교란 효과이다
+                                </td>
+
+                                <td class="result-ok">
+                                    채택
+                                </td>
+
+                                <td>
+                                    키 보정 후 집단 간 관련성이
+                                    크게 감소함
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    흡연 여부는 중성지방 기반 복합
+                                    대사 지표와 관련이 있다
+                                </td>
+
+                                <td class="result-ok">
+                                    채택
+                                </td>
+
+                                <td>
+                                    AIP, TG/HDL Ratio, TyG Index가
+                                    흡연군에서 고위험 방향으로 이동함
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    분석 결과, LDL이나 총콜레스테롤보다 중성지방 및
+                    중성지방을 활용한 복합 대사 지표에서 흡연자와
+                    비흡연자 간의 차이가 더 뚜렷하게 나타났습니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="insights">
+            <div class="wrap">
+                <div class="sec-num">05</div>
+                <div class="sec-label">Key Insights</div>
+
+                <h2>최종 핵심 인사이트</h2>
+
+                <p class="sec-desc">
+                    체격을 보정한 이후 어떤 지표의 변화가 유지되는지
+                    비교해 흡연과 관련성이 높은 대사 지표를
+                    확인했습니다.
+                </p>
+
+                <div class="card">
+                    <h3>
+                        중성지방 중심 대사 지표의 변화
+                    </h3>
+
+                    <p>
+                        키 보정 전후의 변화율을 비교했을 때 LDL,
+                        총콜레스테롤, BMI는 흡연 여부에 따른 변화가
+                        상대적으로 작았습니다. 반면 중성지방,
+                        AIP, TG/HDL Ratio, Remnant-C는 더 높은
+                        변화율을 보였습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        복합 지표로 확장한 분석
+                    </h3>
+
+                    <p>
+                        중성지방 하나만 비교하는 데 그치지 않고,
+                        지질 대사 불균형을 나타내는 AIP와 TG/HDL
+                        Ratio, 인슐린 저항성과 관련된 TyG Index를
+                        함께 분석했습니다. 세 지표 모두 흡연자
+                        집단에서 고위험 방향으로 분포가 이동하는
+                        패턴을 보였습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    프로젝트의 결론은 흡연과 중성지방 중심 대사
+                    불균형 사이에 뚜렷한 연관성이 관찰되었다는
+                    것입니다. 다만 관찰 데이터 분석이므로 이를
+                    직접적인 인과관계로 단정하지 않았습니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="limitations">
+            <div class="wrap">
+                <div class="sec-num">06</div>
+                <div class="sec-label">Limitations &amp; Improvements</div>
+
+                <h2>한계 및 개선 방향</h2>
+
+                <div class="card">
+                    <h3>예측 모델로 확장하지 못한 점</h3>
+
+                    <p>
+                        통계 검정과 파생 변수 분석을 통해 흡연 여부와
+                        대사 지표의 관련성을 확인했지만, 건강검진
+                        수치를 활용해 흡연 여부를 예측하는 분류 모델
+                        단계까지 확장하지 못했습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>특정 BMI 구간의 작은 표본</h3>
+
+                    <p>
+                        BMI 35 이상인 3단계 비만 구간은 전체 표본의
+                        약 0.6%인 41명에 불과했습니다. 해당 구간에서
+                        관찰된 평균값의 역전은 일부 극단치의 영향을
+                        받았을 가능성이 있어 일반화하지 않았습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>외부 생활 습관 변수의 부재</h3>
+
+                    <p>
+                        음주 빈도, 식습관, 운동량처럼 중성지방에
+                        영향을 줄 수 있는 추가 변수가 없었습니다.
+                        따라서 흡연만의 순수한 인과 효과를 분리하는
+                        데 데이터 구조상의 한계가 있었습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>향후 개선 방향</h3>
+
+                    <p>
+                        Logistic Regression, Random Forest,
+                        XGBoost 등의 분류 모델을 적용해 생체 지표
+                        기반 흡연 확률 모델을 구축할 수 있습니다.
+                        또한 음주량, 운동 주기, 하루 흡연량 등의
+                        생활 습관 데이터를 결합해 복합 위험도를
+                        분석할 계획입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="learnings">
+            <div class="wrap">
+                <div class="sec-num">07</div>
+                <div class="sec-label">Learnings</div>
+
+                <h2>프로젝트를 통해 배운 점</h2>
+
+                <ul class="learn-list">
+                    <li>
+                        모든 결측치를 같은 방식으로 채우지 않고,
+                        변수의 분포와 임상적 특성에 맞는 전처리
+                        방법을 선택해야 한다는 점을 배웠습니다.
+                    </li>
+
+                    <li>
+                        관찰된 차이가 흡연 자체의 영향인지, BMI나
+                        체격의 차이에서 발생한 것인지 교란 요인을
+                        확인하는 과정의 중요성을 체감했습니다.
+                    </li>
+
+                    <li>
+                        단일 검사 수치뿐만 아니라 도메인 지식을
+                        활용한 복합 파생 변수가 분석의 깊이를
+                        높여준다는 점을 확인했습니다.
+                    </li>
+
+                    <li>
+                        통계적으로 유의한 결과를 나열하는 것보다,
+                        분석 과정과 한계를 함께 설명하는 데이터
+                        스토리텔링이 중요하다는 점을 배웠습니다.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="back-link" href="resume_v2.html">
+            <i
+                class="fa-solid fa-arrow-left"
+                aria-hidden="true"
+            ></i>
+
+            포트폴리오 홈으로
+        </a>
+
+        <div class="stack-line">
+            Python · pandas · NumPy · Matplotlib ·
+            Seaborn · scikit-learn
+        </div>
+
+        <a
+            class="source-link"
+            href="https://app.notion.com/p/6c1a315780ce83d58dba0132016fad2d?source=copy_link"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            기존 프로젝트 자료 보기
+        </a>
+    </footer>
+</body>
+</html>
