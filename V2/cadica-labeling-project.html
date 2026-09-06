@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="CADICA 관상동맥 조영술 데이터 라벨링 및 품질관리 프로젝트 — 배수빈"
+    >
+
+    <title>CADICA 관상동맥 조영술 데이터 라벨링 — 배수빈</title>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                "Roboto",
+                "Apple SD Gothic Neo",
+                "Noto Sans KR",
+                sans-serif;
+            color: #3f4650;
+            background: #f5f5f5;
+            line-height: 1.65;
+        }
+
+        a {
+            color: #3d884d;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .topnav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .topnav .wrap {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            overflow-x: auto;
+        }
+
+        .topnav a {
+            flex-shrink: 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #7c8695;
+            text-decoration: none;
+        }
+
+        .topnav a:hover,
+        .topnav a:focus {
+            color: #3d884d;
+        }
+
+        .hero {
+            padding: 70px 0 52px;
+            color: #ffffff;
+            background: #273142;
+        }
+
+        .eyebrow {
+            margin-bottom: 14px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #7ec68e;
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            margin: 0 0 14px;
+            font-size: 34px;
+            font-weight: 900;
+            line-height: 1.3;
+        }
+
+        .hero .lead {
+            max-width: 680px;
+            margin: 0 0 20px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .hero .role {
+            margin: 0 0 22px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.62);
+        }
+
+        .hero .role b {
+            color: #ffffff;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-pill {
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .stat-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: -34px 0 50px;
+        }
+
+        .stat-card {
+            padding: 20px 14px;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card .num {
+            margin-bottom: 4px;
+            font-size: 21px;
+            font-weight: 900;
+            color: #3d884d;
+        }
+
+        .stat-card .label {
+            font-size: 11px;
+            color: #8a95a6;
+        }
+
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        section:last-of-type {
+            border-bottom: 0;
+        }
+
+        .sec-num {
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #b7c0cc;
+        }
+
+        .sec-label {
+            margin-bottom: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #3d884d;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #222b39;
+        }
+
+        .sec-desc {
+            max-width: 700px;
+            margin: 0 0 28px;
+            font-size: 14px;
+            color: #69758a;
+        }
+
+        .card {
+            margin-bottom: 16px;
+            padding: 22px 24px;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            color: #273142;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 13.5px;
+            color: #606c7f;
+        }
+
+        .highlight-box {
+            margin: 20px 0;
+            padding: 17px 20px;
+            font-size: 13.5px;
+            color: #2c5f37;
+            background: #eaf5ec;
+            border-left: 4px solid #3d884d;
+            border-radius: 6px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .timeline .step {
+            min-height: 112px;
+            padding: 15px 16px;
+            font-size: 13px;
+            color: #3f4650;
+            background: #f8faf8;
+            border: 1px solid #e2ede2;
+            border-radius: 8px;
+        }
+
+        .timeline .step .n {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 900;
+            color: #3d884d;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        th,
+        td {
+            padding: 11px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        th {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8a95a6;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: #4a5568;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .case-card {
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid #e2e6eb;
+            border-radius: 10px;
+        }
+
+        .case-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #d7d9dc;
+        }
+
+        .case-copy {
+            padding: 16px;
+        }
+
+        .case-copy h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: #273142;
+        }
+
+        .case-copy p {
+            margin: 0;
+            font-size: 12.5px;
+            color: #69758a;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 0 0 18px;
+            font-size: 12.5px;
+            color: #69758a;
+        }
+
+        .legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .legend i {
+            display: inline-block;
+            width: 18px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .legend .expert {
+            background: #00c853;
+        }
+
+        .legend .first-pass {
+            background: #ff6d00;
+        }
+
+        .learn-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .learn-list li {
+            position: relative;
+            padding: 12px 0 12px 30px;
+            font-size: 14px;
+            color: #4a5568;
+            border-bottom: 1px solid #eef1f4;
+        }
+
+        .learn-list li:last-child {
+            border-bottom: 0;
+        }
+
+        .learn-list li::before {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            font-weight: 900;
+            color: #3d884d;
+            content: "✓";
+        }
+
+        .notice {
+            margin-top: 22px;
+            padding: 14px 18px;
+            font-size: 12px;
+            color: #6b7280;
+            background: #f7f8fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        footer {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+
+        footer .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3d884d;
+            text-decoration: none;
+        }
+
+        footer .stack-line,
+        footer .source-line {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #a0a8b4;
+        }
+
+        @media (max-width: 760px) {
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topnav" aria-label="프로젝트 목차">
+        <div class="wrap">
+            <a href="#overview">개요</a>
+            <a href="#guideline">라벨링 기준</a>
+            <a href="#workflow">작업 과정</a>
+            <a href="#quality">품질평가</a>
+            <a href="#errors">오류 분석</a>
+            <a href="#learnings">배운 점</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow">MEDICAL IMAGE LABELING · PERSONAL PROJECT</div>
+
+            <h1>CADICA 관상동맥 조영술<br>데이터 라벨링 및 품질관리</h1>
+
+            <p class="lead">
+                관상동맥 조영술 영상 100장을 직접 라벨링하고,
+                전문가 주석 비교와 블라인드 재검수를 통해
+                의료영상 데이터의 품질관리 과정을 경험한 프로젝트입니다.
+            </p>
+
+            <p class="role">
+                담당:
+                <b>데이터 선정 · 라벨링 기준 수립 · CVAT 작업 · 품질검수 · 오류 분석</b>
+            </p>
+
+            <div class="tag-row" aria-label="활용 기술">
+                <span class="tag-pill">CVAT</span>
+                <span class="tag-pill">Medical Image Labeling</span>
+                <span class="tag-pill">Bounding Box</span>
+                <span class="tag-pill">IoU</span>
+                <span class="tag-pill">Quality Assurance</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div class="stat-grid" aria-label="프로젝트 핵심 수치">
+                <div class="stat-card">
+                    <div class="num">100장</div>
+                    <div class="label">관상동맥 조영술<br>프레임 라벨링</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="num">20장</div>
+                    <div class="label">파일명 변경 후<br>블라인드 재검수</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="num">20%</div>
+                    <div class="label">전체 데이터 대비<br>재검수 비율</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="num">80%</div>
+                    <div class="label">병변 유무 기준<br>반복 일치도</div>
+                </div>
+            </div>
+        </div>
+
+        <section id="overview">
+            <div class="wrap">
+                <div class="sec-num">01</div>
+                <div class="sec-label">Overview</div>
+                <h2>프로젝트 개요</h2>
+
+                <p class="sec-desc">
+                    의료영상 데이터 업무에서 요구되는 정확성, 일관된 기준,
+                    검수 기록을 직접 경험하는 것을 목표로 진행했습니다.
+                </p>
+
+                <div class="card">
+                    <h3>사용 데이터</h3>
+                    <p>
+                        공개 데이터셋인 CADICA V5의 비식별화 관상동맥 조영술
+                        정지 프레임을 사용했습니다. 프로젝트 규모를 관리할 수 있도록
+                        10개 그룹에서 총 100장을 선정했습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>작업 범위</h3>
+                    <p>
+                        CVAT의 Rectangle 도구를 사용해 협착 의심 부위를
+                        bounding box로 표시했습니다. 라벨명은
+                        <b>stenosis</b>로 통일하고 병변이 없다고 판단한 영상에는
+                        박스를 만들지 않았습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    단순히 라벨링 장수를 채우는 데 그치지 않고,
+                    전문가 주석 비교 → 오류 유형화 → 블라인드 재검수까지
+                    하나의 품질관리 흐름으로 설계했습니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="guideline">
+            <div class="wrap">
+                <div class="sec-num">02</div>
+                <div class="sec-label">Labeling Guideline</div>
+                <h2>라벨링 기준</h2>
+
+                <p class="sec-desc">
+                    동일한 판단 기준을 유지하기 위해 작업 전에 기본 원칙을 정했습니다.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>적용 기준</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>라벨 대상</td>
+                            <td>조영제로 확인되는 관상동맥의 협착 의심 구간</td>
+                        </tr>
+                        <tr>
+                            <td>라벨 형태</td>
+                            <td>병변 의심 부위를 포함하는 Rectangle bounding box</td>
+                        </tr>
+                        <tr>
+                            <td>비병변 영상</td>
+                            <td>병변이 확인되지 않으면 별도의 박스를 생성하지 않음</td>
+                        </tr>
+                        <tr>
+                            <td>불분명한 영상</td>
+                            <td>임의로 추측하기보다 정해진 기준 안에서 보수적으로 판단</td>
+                        </tr>
+                        <tr>
+                            <td>일관성 관리</td>
+                            <td>박스 범위와 표기 기준을 동일하게 유지하며 순차 작업</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="workflow">
+            <div class="wrap">
+                <div class="sec-num">03</div>
+                <div class="sec-label">Workflow</div>
+                <h2>작업 과정</h2>
+
+                <p class="sec-desc">
+                    소규모 연습부터 시작해 본 라벨링과 품질평가, 재검수 순서로 진행했습니다.
+                </p>
+
+                <div class="timeline">
+                    <div class="step">
+                        <span class="n">STEP 1</span>
+                        데이터 선정 및<br>연습 라벨링 10장
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 2</span>
+                        CVAT 본 라벨링<br>100장 완료
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 3</span>
+                        전문가 주석 비교 및<br>이미지별 오류 분류
+                    </div>
+
+                    <div class="step">
+                        <span class="n">STEP 4</span>
+                        파일명 변경 후<br>20장 블라인드 재검수
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quality">
+            <div class="wrap">
+                <div class="sec-num">04</div>
+                <div class="sec-label">Quality Assurance</div>
+                <h2>품질평가 및 오류 관리</h2>
+
+                <div class="card">
+                    <p>
+                        전문가 주석을 기준으로 라벨링 결과를 비교하고,
+                        병변 누락·과검출·위치 편차로 오류 유형을 분류하여
+                        이미지별 품질검수표를 작성했습니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <p>
+                        이후 전체 데이터의 20%인 20장을 파일명 변경 후
+                        블라인드 재검수했으며, 병변 유무 기준 80%의
+                        반복 일치도를 확인했습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    블라인드 재검수는 정답률이 아니라 동일 작업자가 시간 간격을 두고
+                    같은 기준을 유지하는지 확인하는 작업자 내 반복 일치도 평가입니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="errors">
+            <div class="wrap">
+                <div class="sec-num">05</div>
+                <div class="sec-label">Error Analysis</div>
+                <h2>대표 오류 사례 3가지</h2>
+
+                <p class="sec-desc">
+                    전체 결과를 나열하기보다 서로 다른 개선 포인트를 보여주는
+                    대표 사례를 한 장씩 선별했습니다.
+                </p>
+
+                <div class="legend" aria-label="오버레이 색상 범례">
+                    <span><i class="expert"></i>초록색: 전문가 주석</span>
+                    <span><i class="first-pass"></i>주황색: 1차 라벨링</span>
+                </div>
+
+                <div class="gallery">
+                    <article class="case-card">
+                        <img
+                            src="assets/images/cadica-main001-missed-lesion.png"
+                            alt="전문가 주석은 있지만 1차 라벨링 박스가 없는 병변 누락 사례"
+                        >
+
+                        <div class="case-copy">
+                            <h3>병변 누락</h3>
+                            <p>
+                                전문가 주석에는 두 곳의 병변이 표시되어 있지만
+                                1차 작업에서는 박스를 생성하지 않은 사례입니다.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="case-card">
+                        <img
+                            src="assets/images/cadica-main008-false-positive.png"
+                            alt="전문가 주석은 없지만 1차 라벨링 박스가 표시된 과검출 사례"
+                        >
+
+                        <div class="case-copy">
+                            <h3>과검출</h3>
+                            <p>
+                                전문가 주석이 없는 영상에서 혈관 굴곡 부위를
+                                병변으로 판단해 박스를 표시한 사례입니다.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="case-card">
+                        <img
+                            src="assets/images/cadica-main017-location-deviation.png"
+                            alt="전문가 주석과 1차 라벨링 박스의 범위가 다른 위치 편차 사례"
+                        >
+
+                        <div class="case-copy">
+                            <h3>위치 편차</h3>
+                            <p>
+                                병변이 있는 영상으로 판단했지만 전문가 주석과
+                                박스 위치 및 범위가 충분히 일치하지 않은 사례입니다.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="learnings">
+            <div class="wrap">
+                <div class="sec-num">06</div>
+                <div class="sec-label">Learnings</div>
+                <h2>프로젝트를 통해 배운 점</h2>
+
+                <ul class="learn-list">
+                    <li>
+                        라벨링 장수보다 모든 이미지에 동일하게 적용할 수 있는
+                        명확한 기준이 중요하다는 점을 배웠습니다.
+                    </li>
+                    <li>
+                        병변 유무 판단과 정확한 박스 위치 선정은 서로 다른 품질 요소이므로
+                        분리하여 관리해야 한다는 점을 확인했습니다.
+                    </li>
+                    <li>
+                        오류를 누락·과검출·위치 편차로 유형화하면 검수 결과를
+                        다음 작업 기준에 구체적으로 반영할 수 있었습니다.
+                    </li>
+                    <li>
+                        의료 데이터 업무에서는 작업 결과뿐 아니라 기준, 수정 이력,
+                        재검수 과정을 추적할 수 있도록 기록하는 것이 중요했습니다.
+                    </li>
+                </ul>
+
+                <div class="notice">
+                    본 프로젝트는 공개 데이터로 수행한 교육·취업 포트폴리오용
+                    라벨링 프로젝트이며 의료 진단 또는 환자 치료를 목적으로 하지 않습니다.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="back-link" href="resume_v2.html">← 포트폴리오 홈으로</a>
+
+        <div class="stack-line">
+            CVAT · Medical Image Labeling · Bounding Box · IoU · Quality Assurance
+        </div>
+
+        <div class="source-line">
+            데이터 출처:
+            <a
+                href="https://data.mendeley.com/datasets/p9bpx9ctcv/5"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                CADICA V5, Mendeley Data
+            </a>
+            · CC BY 4.0 · 원본 이미지에 전문가/작업자 주석을 추가해 시각화
+        </div>
+    </footer>
+</body>
+</html>
