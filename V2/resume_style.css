@@ -257,6 +257,17 @@ main h2 {
 
 /* 프로젝트 */
 
+#projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+#projects > h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 1px;
+}
+
 .project-card {
     display: flex;
     gap: 22px;
@@ -288,7 +299,10 @@ main h2 {
 }
 
 .project-content {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    min-width: 0;
 }
 
 .project-category {
@@ -315,7 +329,8 @@ main h2 {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
     color: #416fae;
     font-size: 0.88rem;
     font-weight: 700;
@@ -428,6 +443,12 @@ main h2 {
 }
 
 /* 모바일 */
+
+@media (max-width: 700px) {
+    #projects {
+        grid-template-columns: 1fr;
+    }
+}
 
 @media (max-width: 600px) {
     .container {
