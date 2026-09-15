@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FastAPI, Redis, SimpleCNN, Docker와 AWS EC2로 구현한 흉부 X-ray 폐렴 예측 웹 서비스 — 배수빈">
+    <title>흉부 X-ray 폐렴 예측 웹 서비스 — 배수빈</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: #33433e;
+            background: #f5f7f5;
+            font-family: "Roboto", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+            line-height: 1.7;
+        }
+        a { color: #176c4d; }
+        img { display: block; max-width: 100%; }
+        .wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 0 24px; }
+        .topnav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); border-bottom: 1px solid #dfe6e1; }
+        .topnav .wrap { display: flex; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; overflow-x: auto; }
+        .topnav a { flex-shrink: 0; color: #66766f; font-size: 13px; font-weight: 700; text-decoration: none; }
+        .topnav a:first-child { margin-right: auto; color: #176c4d; }
+        .topnav a:hover, .topnav a:focus { color: #0d4e37; }
+        .hero { padding: 82px 0 72px; color: #f4fbf7; background: #102a22; }
+        .eyebrow { margin: 0 0 15px; color: #8ee0bd; font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+        .hero h1 { max-width: 760px; margin: 0 0 20px; font-size: clamp(34px, 6vw, 58px); line-height: 1.13; letter-spacing: -2px; }
+        .hero .lead { max-width: 700px; margin: 0 0 18px; color: rgba(255,255,255,.76); font-size: 17px; }
+        .hero .role { margin: 0 0 28px; color: rgba(255,255,255,.62); font-size: 14px; }
+        .hero .role b { color: #fff; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag-pill { padding: 5px 12px; color: #eefaf4; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; font-size: 12px; }
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+        .button { display: inline-flex; align-items: center; min-height: 42px; padding: 0 17px; color: #102a22; background: #8ee0bd; border-radius: 6px; font-size: 13px; font-weight: 800; text-decoration: none; }
+        .button.secondary { color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.35); }
+        .stat-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin: -33px 0 48px; }
+        .stat-card { padding: 20px 12px; text-align: center; background: #fff; border-radius: 10px; box-shadow: 0 8px 22px rgba(16,42,34,.1); }
+        .stat-card .num { color: #176c4d; font-size: 22px; font-weight: 900; }
+        .stat-card .label { color: #819089; font-size: 11px; }
+        section { padding: 52px 0; border-bottom: 1px solid #e0e7e2; }
+        section:last-of-type { border-bottom: 0; }
+        .sec-num { margin-bottom: 5px; color: #a4b1ab; font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+        .sec-label { margin-bottom: 4px; color: #176c4d; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+        h2 { margin: 0 0 13px; color: #172d25; font-size: 27px; letter-spacing: -.5px; }
+        .sec-desc { max-width: 760px; margin: 0 0 28px; color: #687970; font-size: 14px; }
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card { padding: 22px 24px; background: #fff; border: 1px solid #dfe7e1; border-radius: 10px; }
+        .card h3 { margin: 0 0 8px; color: #203c32; font-size: 16px; }
+        .card p { margin: 0; color: #65766e; font-size: 13.5px; }
+        .highlight { margin-top: 20px; padding: 17px 20px; color: #285b46; background: #e5f4ec; border-left: 4px solid #249064; border-radius: 6px; font-size: 13.5px; }
+        .flow { display: grid; grid-template-columns: repeat(5,1fr); gap: 22px; padding: 25px 0; }
+        .flow-step { position: relative; min-height: 138px; padding: 18px 15px; background: #fff; border: 1px solid #dbe6df; border-radius: 9px; }
+        .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -20px; top: 52px; color: #5f8e7b; font-weight: 900; }
+        .flow-step span { color: #249064; font-size: 11px; font-weight: 900; }
+        .flow-step strong { display: block; margin: 8px 0 5px; color: #203c32; font-size: 15px; }
+        .flow-step small { display: block; color: #73827b; font-size: 12px; line-height: 1.5; }
+        .role-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid #d9e3dd; }
+        .role-list li { display: grid; grid-template-columns: 55px 1fr; gap: 15px; padding: 18px 8px; border-bottom: 1px solid #d9e3dd; }
+        .role-list span { color: #249064; font-size: 12px; font-weight: 900; }
+        .role-list p { margin: 0; color: #556860; font-size: 14px; }
+        code { padding: 1px 5px; color: #176c4d; background: #e8f2ed; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+        .demo-shell { overflow: hidden; background: #fff; border: 1px solid #cedbd3; border-radius: 10px; box-shadow: 0 10px 28px rgba(16,42,34,.09); }
+        .browser-bar { display: flex; align-items: center; gap: 7px; height: 38px; padding: 0 14px; color: #b7cdc3; background: #173b30; font-size: 10px; letter-spacing: 1px; }
+        .browser-bar i { width: 8px; height: 8px; background: #7ba492; border-radius: 50%; }
+        .browser-bar span { margin-left: 7px; }
+        .demo-caption { margin: 14px 0 0; color: #78867f; font-size: 12px; text-align: center; }
+        .proof-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 18px; }
+        .proof-column { display: grid; gap: 18px; }
+        figure { margin: 0; }
+        .proof { overflow: hidden; background: #fff; border: 1px solid #dce5df; border-radius: 9px; }
+        .proof img { width: 100%; height: 240px; object-fit: cover; object-position: top; background: #fff; }
+        .proof.tall img { height: 520px; }
+        .proof figcaption { padding: 14px 16px; color: #5f7168; font-size: 12.5px; }
+        .proof figcaption strong { display: block; margin-bottom: 3px; color: #203a30; font-size: 14px; }
+        .privacy { margin-top: 14px; color: #87938e; font-size: 12px; }
+        .decision-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+        .decision { padding: 20px; background: #eef5f1; border-radius: 8px; }
+        .decision b { display: block; margin-bottom: 6px; color: #176c4d; }
+        .decision p { margin: 0; color: #65766e; font-size: 13px; }
+        .footer { padding: 42px 0; color: #bed0c7; background: #0c211a; text-align: center; }
+        .footer strong { display: block; margin-bottom: 8px; color: #fff; }
+        .footer a { color: #8ee0bd; }
+        @media (max-width: 760px) {
+            .topnav a:not(:first-child):not(:last-child) { display: none; }
+            .hero { padding-top: 60px; }
+            .stat-grid, .card-grid, .decision-grid, .proof-grid { grid-template-columns: 1fr 1fr; }
+            .flow { grid-template-columns: 1fr; gap: 10px; }
+            .flow-step { min-height: auto; }
+            .flow-step:not(:last-child)::after { content: "↓"; right: 20px; top: auto; bottom: -13px; z-index: 2; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .proof.tall img { height: 340px; }
+        }
+        @media (max-width: 480px) {
+            .wrap { padding: 0 18px; }
+            .stat-grid, .card-grid, .decision-grid { grid-template-columns: 1fr; }
+            .stat-grid { margin-top: -24px; }
+            .stat-card { padding: 15px; }
+            .role-list li { grid-template-columns: 38px 1fr; }
+            .proof img, .proof.tall img { height: 230px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="topnav" aria-label="프로젝트 메뉴">
+        <div class="wrap">
+            <a href="index.html">← 포트폴리오</a>
+            <a href="#overview">개요</a>
+            <a href="#architecture">아키텍처</a>
+            <a href="#role">담당 업무</a>
+            <a href="#demo">시연</a>
+            <a href="#deployment">배포 검증</a>
+            <a href="https://github.com/anaeway123-oss/Oz_codingSchool" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <p class="eyebrow">AI HEALTHCARE · FULL-STACK TEAM PROJECT</p>
+            <h1>흉부 X-ray 폐렴 예측 웹 서비스</h1>
+            <p class="lead">환자 진료기록에 등록된 흉부 X-ray를 SimpleCNN으로 분석하고 폐렴 여부와 신뢰도를 제공하는 의료 지원 웹 서비스입니다.</p>
+            <p class="role"><b>담당:</b> AI 모델 로딩·추론, Redis 기반 예측 연동, 프론트 결과 연결, AWS EC2 공통 환경 준비</p>
+            <div class="tag-row">
+                <span class="tag-pill">FastAPI</span><span class="tag-pill">Redis</span><span class="tag-pill">PyTorch</span><span class="tag-pill">SQLAlchemy</span><span class="tag-pill">MySQL</span><span class="tag-pill">Docker Compose</span><span class="tag-pill">Nginx</span><span class="tag-pill">AWS EC2</span>
+            </div>
+            <div class="actions">
+                <a class="button" href="#demo">시연 GIF 보기 ↓</a>
+                <a class="button secondary" href="https://github.com/anaeway123-oss/Oz_codingSchool" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <div class="stat-grid" aria-label="프로젝트 핵심 정보">
+            <div class="stat-card"><div class="num">5</div><div class="label">Docker Services</div></div>
+            <div class="stat-card"><div class="num">20</div><div class="label">Implemented APIs</div></div>
+            <div class="stat-card"><div class="num">128×128</div><div class="label">Model Input</div></div>
+            <div class="stat-card"><div class="num">2-Class</div><div class="label">Normal / Pneumonia</div></div>
+        </div>
+
+        <section id="overview">
+            <p class="sec-num">01</p><p class="sec-label">OVERVIEW</p><h2>의료 기록과 AI 예측을 하나의 흐름으로</h2>
+            <p class="sec-desc">회원과 권한, 환자, 진료기록, X-ray 업로드, AI 폐렴 예측을 하나의 웹 서비스로 연결했습니다. 예측처럼 오래 걸릴 수 있는 작업은 API 서버와 분리해 동시 요청 상황에서도 일반 기능에 미치는 영향을 줄였습니다.</p>
+            <div class="card-grid">
+                <article class="card"><h3>환자·진료기록 관리</h3><p>환자 등록·검색·수정·삭제와 진료기록 및 X-ray 업로드를 지원합니다.</p></article>
+                <article class="card"><h3>AI 폐렴 예측</h3><p>흑백 X-ray를 128×128로 전처리한 뒤 SimpleCNN으로 정상과 폐렴을 분류합니다.</p></article>
+                <article class="card"><h3>인증·권한 제어</h3><p>JWT 인증과 STAFF·ADMIN 역할 검증으로 의료 데이터와 예측 기능의 접근 범위를 관리합니다.</p></article>
+                <article class="card"><h3>중복 예측 방지</h3><p>같은 진료기록과 같은 모델의 기존 결과가 있으면 재추론하지 않고 저장된 결과를 반환합니다.</p></article>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <p class="sec-num">02</p><p class="sec-label">ARCHITECTURE</p><h2>웹 요청과 AI 연산을 분리한 구조</h2>
+            <p class="sec-desc">FastAPI는 인증·입력 검증과 작업 생성을 담당하고, Redis Queue가 작업을 보관합니다. AI Worker는 작업을 가져와 모델을 실행한 뒤 Pub/Sub으로 결과를 전달하며 FastAPI가 최종 결과를 MySQL에 저장합니다.</p>
+            <div class="flow">
+                <div class="flow-step"><span>01</span><strong>Web Client</strong><small>예측 요청<br>결과 화면 표시</small></div>
+                <div class="flow-step"><span>02</span><strong>FastAPI</strong><small>JWT 인증<br>기록·X-ray 검증</small></div>
+                <div class="flow-step"><span>03</span><strong>Redis</strong><small>Task Queue<br>결과 Pub/Sub</small></div>
+                <div class="flow-step"><span>04</span><strong>AI Worker</strong><small>전처리<br>SimpleCNN 추론</small></div>
+                <div class="flow-step"><span>05</span><strong>MySQL</strong><small>환자·기록<br>예측 결과 저장</small></div>
+            </div>
+            <div class="highlight">모델 추론을 별도 Worker로 분리해 FastAPI가 무거운 연산을 직접 수행하지 않도록 했으며, 작업 ID별 결과 채널을 사용해 동시에 들어온 요청과 응답을 구분했습니다.</div>
+        </section>
+
+        <section id="role">
+            <p class="sec-num">03</p><p class="sec-label">MY ROLE</p><h2>배수빈 — AI 모델과 서비스의 연결 구간 담당</h2>
+            <p class="sec-desc">제공된 모델 파일을 단순히 호출하는 데서 끝내지 않고, 모델 구조 확인부터 API·Redis·화면·배포 환경까지 예측이 사용자에게 도달하는 전 과정을 연결했습니다.</p>
+            <ol class="role-list">
+                <li><span>01</span><p><b>모델 분석:</b> <code>state_dict</code> 텐서 구조를 확인해 SimpleCNN 구조와 1채널·128×128 입력 조건을 맞췄습니다.</p></li>
+                <li><span>02</span><p><b>추론 구현:</b> 모델 로딩, 이미지 전처리, softmax 확률 계산, NORMAL/PNEUMONIA 결과 변환을 함수로 분리했습니다.</p></li>
+                <li><span>03</span><p><b>환경 호환성:</b> CPU·CUDA·Apple MPS를 감지하고 CUDA에서 저장된 가중치도 CPU를 거쳐 안전하게 불러오도록 처리했습니다.</p></li>
+                <li><span>04</span><p><b>비동기 연동:</b> FastAPI가 Redis Queue에 작업을 등록하고 Pub/Sub 결과를 기다리는 흐름과 타임아웃·Worker 오류 처리를 구현했습니다.</p></li>
+                <li><span>05</span><p><b>프론트 연동:</b> 환자 ID와 진료기록 ID를 포함해 예측 API를 호출하고 폐렴 여부와 Confidence를 화면에 반영했습니다.</p></li>
+                <li><span>06</span><p><b>배포 준비:</b> AWS EC2, SSH, Docker·Compose, 2GB Swap 환경을 준비하고 팀원이 재접속할 수 있도록 운영 정보를 인계했습니다.</p></li>
+            </ol>
+        </section>
+
+        <section id="demo">
+            <p class="sec-num">04</p><p class="sec-label">PRODUCT WALKTHROUGH</p><h2>로그인부터 AI 예측 결과까지</h2>
+            <p class="sec-desc">로그인 → 환자 조회 → 진료기록 및 X-ray 등록 → AI 예측 → 마이페이지의 핵심 사용 흐름입니다. 라이브 EC2가 중지되어도 기능을 확인할 수 있도록 GIF로 기록했습니다.</p>
+            <figure class="demo-shell">
+                <div class="browser-bar"><i></i><i></i><i></i><span>AI HEALTH · DEMO</span></div>
+                <img src="assets/images/ai-healthcare/ai-health-demo.gif" alt="AI Health 웹 서비스 핵심 사용 흐름 시연 GIF">
+            </figure>
+            <p class="demo-caption">시연 화면의 127.0.0.1 주소는 개발 컴퓨터 자체를 가리키는 로컬 주소이며 실제 배포 서버 주소가 아닙니다.</p>
+        </section>
+
+        <section id="deployment">
+            <p class="sec-num">05</p><p class="sec-label">DEPLOYMENT PROOF</p><h2>AWS EC2 배포와 동작 검증</h2>
+            <p class="sec-desc">Nginx, FastAPI, AI Worker, Redis, MySQL의 5개 컨테이너를 Docker Compose로 실행하고 Swagger UI 노출과 외부 GET 요청의 HTTP 200 응답을 확인했습니다.</p>
+            <div class="proof-grid">
+                <figure class="proof tall">
+                    <img src="assets/images/ai-healthcare/aws-swagger.png" alt="AWS EC2에서 실행된 FastAPI Swagger UI">
+                    <figcaption><strong>Swagger UI 정상 노출</strong>AWS EC2 환경에서 FastAPI API 명세가 외부에 정상 제공되는 것을 확인했습니다.</figcaption>
+                </figure>
+                <div class="proof-column">
+                    <figure class="proof"><img src="assets/images/ai-healthcare/docker-compose.png" alt="Docker Compose 서비스 실행 상태"><figcaption><strong>5개 Docker 서비스 실행</strong>모든 핵심 컨테이너가 실행되고 FastAPI·MySQL·Redis의 health 상태를 확인했습니다.</figcaption></figure>
+                    <figure class="proof"><img src="assets/images/ai-healthcare/api-200.png" alt="FastAPI GET 요청 HTTP 200 응답"><figcaption><strong>HTTP 200 응답 검증</strong>Nginx를 통한 외부 API 요청에서 정상 JSON 응답을 확인했습니다.</figcaption></figure>
+                </div>
+            </div>
+            <p class="privacy">※ 포트폴리오 공개를 위해 배포 증빙 이미지에서 EC2 공개 IP 등 운영 식별 정보는 제거했습니다.</p>
+        </section>
+
+        <section id="decisions">
+            <p class="sec-num">06</p><p class="sec-label">ENGINEERING DECISIONS</p><h2>구현 과정에서 내린 주요 결정</h2>
+            <div class="decision-grid">
+                <article class="decision"><b>state_dict 사용</b><p>전체 객체 pickle보다 구조를 코드로 명시해 로딩 과정을 이해하고 안전하게 관리했습니다.</p></article>
+                <article class="decision"><b>Redis 작업 분리</b><p>AI 추론이 일반 API 요청을 붙잡지 않도록 Producer와 Worker의 책임을 분리했습니다.</p></article>
+                <article class="decision"><b>정적 증빙 보존</b><p>비용 절감을 위해 EC2를 중지해도 결과를 확인할 수 있도록 화면과 GIF를 남겼습니다.</p></article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap"><strong>AI Health — 흉부 X-ray 폐렴 예측 웹 서비스</strong><span>전체 소스와 협업 기록은 <a href="https://github.com/anaeway123-oss/Oz_codingSchool" target="_blank" rel="noopener noreferrer">GitHub Repository</a>에서 확인할 수 있습니다.</span></div>
+    </footer>
+</body>
+</html>
