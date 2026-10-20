@@ -1,0 +1,21 @@
+/* A4 인쇄본은 같은 본문에서 생성한 벡터 레이아웃을 사용합니다. */
+.print-sheet { display: none; }
+@page { size: A4 portrait; margin: 10mm; }
+@media print {
+  html, body.pm-resume { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+  body.pm-resume > .sidebar,
+  body.pm-resume > .skip-link,
+  body.pm-resume > #resume { display: none !important; }
+  body.pm-resume > .print-sheet {
+    display: block !important;
+    width: 190mm;
+    height: 275mm;
+    margin: 0;
+    padding: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .print-sheet img { display: block; width: 190mm; height: 275mm; margin: 0; }
+}
