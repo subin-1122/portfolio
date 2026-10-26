@@ -50,51 +50,47 @@
 <line x1="177.53" y1="385.20" x2="177.53" y2="501.50" stroke="#dce4ef" stroke-width="0.5"/>
 <text x="183.53" y="394.20" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.8" fill="#273142" textLength="138.29" lengthAdjust="spacingAndGlyphs">발달장애 아동 돌봄 보조 서비스</text>
 <text x="183.53" y="409.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="121.06" lengthAdjust="spacingAndGlyphs">제8회 K-디지털 트레이닝 해커톤 ·</text>
-<text x="183.53" y="419.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="163.89" lengthAdjust="spacingAndGlyphs">아이신호.care 2026.06.19 - 2026.08.21 · 예선</text>
-<text x="183.53" y="429.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="76.05" lengthAdjust="spacingAndGlyphs">통과 · 본선 진출 실패</text>
-<text x="183.53" y="443.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="154.51" lengthAdjust="spacingAndGlyphs">웨어러블 생체신호로 ASD 아동의 행동</text>
-<text x="183.53" y="454.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="136.00" lengthAdjust="spacingAndGlyphs">전조를 감지해 개입을 돕는 서비스</text>
-<text x="183.53" y="469.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.3" fill="#465569" textLength="153.55" lengthAdjust="spacingAndGlyphs">개인 담당 세부 기획 공동 정리 · 행동 라벨</text>
-<text x="183.53" y="480.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.3" fill="#465569" textLength="113.44" lengthAdjust="spacingAndGlyphs">설계 · 기획 문서·근거자료 작성</text>
-<text x="183.53" y="494.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#416fae" textLength="140.00" lengthAdjust="spacingAndGlyphs">세부 기획 / 의료 도메인 / 문서·근거자료</text>
-<line x1="361.06" y1="385.20" x2="361.06" y2="511.50" stroke="#dce4ef" stroke-width="0.5"/>
+<text x="183.53" y="419.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="50.41" lengthAdjust="spacingAndGlyphs">아이신호.care</text>
+<text x="183.53" y="433.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="154.51" lengthAdjust="spacingAndGlyphs">웨어러블 생체신호로 ASD 아동의 행동</text>
+<text x="183.53" y="444.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="136.00" lengthAdjust="spacingAndGlyphs">전조를 감지해 개입을 돕는 서비스</text>
+<text x="183.53" y="459.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.3" fill="#465569" textLength="153.55" lengthAdjust="spacingAndGlyphs">개인 담당 세부 기획 공동 정리 · 행동 라벨</text>
+<text x="183.53" y="470.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.3" fill="#465569" textLength="113.44" lengthAdjust="spacingAndGlyphs">설계 · 기획 문서·근거자료 작성</text>
+<text x="183.53" y="484.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#416fae" textLength="140.00" lengthAdjust="spacingAndGlyphs">세부 기획 / 의료 도메인 / 문서·근거자료</text>
+<line x1="361.06" y1="385.20" x2="361.06" y2="501.50" stroke="#dce4ef" stroke-width="0.5"/>
 <text x="367.06" y="394.20" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.8" fill="#273142" textLength="108.89" lengthAdjust="spacingAndGlyphs">난임 환자 임신 성공 예측</text>
 <text x="367.06" y="409.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="154.81" lengthAdjust="spacingAndGlyphs">개인 담당 EDA · 전처리 · 모델링 · 발표자료</text>
 <text x="367.06" y="419.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.1" fill="#465569" textLength="72.46" lengthAdjust="spacingAndGlyphs">제작 / 3인 공동 진행</text>
 <text x="367.06" y="433.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="147.50" lengthAdjust="spacingAndGlyphs">난임 시술 데이터로 임신 성공 여부를</text>
 <text x="367.06" y="444.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.0" fill="#465569" textLength="106.00" lengthAdjust="spacingAndGlyphs">예측하는 AI 분석 프로젝트</text>
 <text x="367.06" y="459.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#416fae" textLength="116.00" lengthAdjust="spacingAndGlyphs">가설 검증 / 실험 선택 / 결과 전달</text>
-<rect x="0.00" y="515.50" width="2.40" height="11.00" fill="#416fae"/>
-<text x="9.00" y="523.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="11.2" fill="#273142" textLength="56.02" lengthAdjust="spacingAndGlyphs">Certificates</text>
-<text x="0.00" y="540.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="57.13" lengthAdjust="spacingAndGlyphs">간호사 면허증</text>
-<text x="221.25" y="540.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="40.04" lengthAdjust="spacingAndGlyphs">2026.03.05</text>
-<text x="0.00" y="552.00" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="43.00" lengthAdjust="spacingAndGlyphs">보건복지부</text>
-<text x="277.29" y="540.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="17.20" lengthAdjust="spacingAndGlyphs">BLS</text>
-<text x="451.40" y="540.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="87.19" lengthAdjust="spacingAndGlyphs">2024.10.21 - 2026.10.21</text>
-<text x="277.29" y="552.00" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="76.45" lengthAdjust="spacingAndGlyphs">AHA · 미국심장협회</text>
-<text x="0.00" y="567.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="23.27" lengthAdjust="spacingAndGlyphs">KALS</text>
-<text x="174.10" y="567.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="87.19" lengthAdjust="spacingAndGlyphs">2025.03.23 - 2027.03.23</text>
-<text x="0.00" y="579.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="68.80" lengthAdjust="spacingAndGlyphs">대한심폐소생협회</text>
-<text x="277.29" y="567.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="68.76" lengthAdjust="spacingAndGlyphs">2종보통운전면허</text>
-<text x="509.66" y="567.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="28.92" lengthAdjust="spacingAndGlyphs">2021.12</text>
-<text x="277.29" y="579.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="108.93" lengthAdjust="spacingAndGlyphs">경찰청(운전면허시험관리단)</text>
-<rect x="0.00" y="589.10" width="2.40" height="11.00" fill="#416fae"/>
-<text x="9.00" y="597.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="11.2" fill="#273142" textLength="83.42" lengthAdjust="spacingAndGlyphs">Planning &amp; Skills</text>
-<text x="0.00" y="614.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="90.47" lengthAdjust="spacingAndGlyphs">서비스 기획과 팀 운영</text>
-<text x="0.00" y="627.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="160.07" lengthAdjust="spacingAndGlyphs">서비스 콘셉트 / 요구사항 정의 / 업무 분배 /</text>
-<text x="0.00" y="637.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="52.73" lengthAdjust="spacingAndGlyphs">데일리 스크럼</text>
-<text x="0.00" y="651.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="167.54" lengthAdjust="spacingAndGlyphs">당고킬러 직접 기획·팀장 수행 및 해커톤 세부</text>
-<text x="0.00" y="661.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="55.07" lengthAdjust="spacingAndGlyphs">기획 공동 정리</text>
-<text x="183.53" y="614.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="57.76" lengthAdjust="spacingAndGlyphs">데이터와 검증</text>
-<text x="183.53" y="627.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="147.05" lengthAdjust="spacingAndGlyphs">Python / pandas / EDA / 모델 비교·검증</text>
-<text x="183.53" y="640.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="156.80" lengthAdjust="spacingAndGlyphs">난임 예측 프로젝트의 결측 분석·후보 특성</text>
-<text x="183.53" y="651.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="35.93" lengthAdjust="spacingAndGlyphs">검증 경험</text>
-<text x="367.06" y="614.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="78.71" lengthAdjust="spacingAndGlyphs">도메인과 개발 협업</text>
-<text x="367.06" y="627.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="138.60" lengthAdjust="spacingAndGlyphs">의료 맥락의 라벨링 / 기획 문서 작성 /</text>
-<text x="367.06" y="637.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="99.42" lengthAdjust="spacingAndGlyphs">ERD·명세서 / Git &amp; GitHub</text>
-<text x="367.06" y="651.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="140.00" lengthAdjust="spacingAndGlyphs">해커톤의 데이터 기반 근거자료 제작 ·</text>
-<text x="367.06" y="661.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="162.87" lengthAdjust="spacingAndGlyphs">당고킬러의 코드 통합·회원정보·로그인 화면</text>
-<text x="367.06" y="672.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="16.80" lengthAdjust="spacingAndGlyphs">개발</text>
-<line x1="0.00" y1="688.50" x2="538.58" y2="688.50" stroke="#dce4ef" stroke-width="0.5"/>
-<text x="0.00" y="700.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="7.1" fill="#465569" textLength="118.73" lengthAdjust="spacingAndGlyphs">배수빈 · 서비스 기획 / PM 포트폴리오</text>
+<rect x="0.00" y="505.50" width="2.40" height="11.00" fill="#416fae"/>
+<text x="9.00" y="513.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="11.2" fill="#273142" textLength="56.02" lengthAdjust="spacingAndGlyphs">Certificates</text>
+<text x="0.00" y="530.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="57.13" lengthAdjust="spacingAndGlyphs">간호사 면허증</text>
+<text x="221.25" y="530.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="40.04" lengthAdjust="spacingAndGlyphs">2026.03.05</text>
+<text x="0.00" y="542.00" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="43.00" lengthAdjust="spacingAndGlyphs">보건복지부</text>
+<text x="277.29" y="530.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="23.27" lengthAdjust="spacingAndGlyphs">KALS</text>
+<text x="451.40" y="530.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="87.19" lengthAdjust="spacingAndGlyphs">2025.03.23 - 2027.03.23</text>
+<text x="277.29" y="542.00" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="68.80" lengthAdjust="spacingAndGlyphs">대한심폐소생협회</text>
+<text x="0.00" y="557.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.1" fill="#273142" textLength="68.76" lengthAdjust="spacingAndGlyphs">2종보통운전면허</text>
+<text x="232.37" y="557.80" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.0" fill="#465569" textLength="28.92" lengthAdjust="spacingAndGlyphs">2021.12</text>
+<text x="0.00" y="569.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.6" fill="#465569" textLength="108.93" lengthAdjust="spacingAndGlyphs">경찰청(운전면허시험관리단)</text>
+<rect x="0.00" y="579.10" width="2.40" height="11.00" fill="#416fae"/>
+<text x="9.00" y="587.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="11.2" fill="#273142" textLength="83.42" lengthAdjust="spacingAndGlyphs">Planning &amp; Skills</text>
+<text x="0.00" y="604.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="90.47" lengthAdjust="spacingAndGlyphs">서비스 기획과 팀 운영</text>
+<text x="0.00" y="617.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="160.07" lengthAdjust="spacingAndGlyphs">서비스 콘셉트 / 요구사항 정의 / 업무 분배 /</text>
+<text x="0.00" y="627.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="52.73" lengthAdjust="spacingAndGlyphs">데일리 스크럼</text>
+<text x="0.00" y="641.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="167.54" lengthAdjust="spacingAndGlyphs">당고킬러 직접 기획·팀장 수행 및 해커톤 세부</text>
+<text x="0.00" y="651.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="55.07" lengthAdjust="spacingAndGlyphs">기획 공동 정리</text>
+<text x="183.53" y="604.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="57.76" lengthAdjust="spacingAndGlyphs">데이터와 검증</text>
+<text x="183.53" y="617.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="147.05" lengthAdjust="spacingAndGlyphs">Python / pandas / EDA / 모델 비교·검증</text>
+<text x="183.53" y="630.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="156.80" lengthAdjust="spacingAndGlyphs">난임 예측 프로젝트의 결측 분석·후보 특성</text>
+<text x="183.53" y="641.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="35.93" lengthAdjust="spacingAndGlyphs">검증 경험</text>
+<text x="367.06" y="604.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="9.2" fill="#273142" textLength="78.71" lengthAdjust="spacingAndGlyphs">도메인과 개발 협업</text>
+<text x="367.06" y="617.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="138.60" lengthAdjust="spacingAndGlyphs">의료 맥락의 라벨링 / 기획 문서 작성 /</text>
+<text x="367.06" y="627.90" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#416fae" textLength="99.42" lengthAdjust="spacingAndGlyphs">ERD·명세서 / Git &amp; GitHub</text>
+<text x="367.06" y="641.30" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="140.00" lengthAdjust="spacingAndGlyphs">해커톤의 데이터 기반 근거자료 제작 ·</text>
+<text x="367.06" y="651.70" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="162.87" lengthAdjust="spacingAndGlyphs">당고킬러의 코드 통합·회원정보·로그인 화면</text>
+<text x="367.06" y="662.10" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="8.4" fill="#465569" textLength="16.80" lengthAdjust="spacingAndGlyphs">개발</text>
+<line x1="0.00" y1="678.50" x2="538.58" y2="678.50" stroke="#dce4ef" stroke-width="0.5"/>
+<text x="0.00" y="690.50" font-family="Arial Unicode MS,Apple SD Gothic Neo,Noto Sans KR,sans-serif" font-size="7.1" fill="#465569" textLength="118.73" lengthAdjust="spacingAndGlyphs">배수빈 · 서비스 기획 / PM 포트폴리오</text>
 </svg>
